@@ -36,7 +36,7 @@ module.exports = {
   ],
   description: "All Sticker formatting Commands",
   start: async (
-    Atlas,
+    shadow,
     m,
     {
       inputCMD,
@@ -56,7 +56,7 @@ module.exports = {
       isBotAdmin,
       groupAdmin,
       isAdmin,
-    }
+    },
   ) => {
     switch (inputCMD) {
       case "s":
@@ -74,16 +74,16 @@ module.exports = {
             background: "transparent",
           });
           const stickerBuffer = await stickerMess.toBuffer();
-          Atlas.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
+          shadow.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
         } else if (/video/.test(mime)) {
           await doReact("🔖");
           let mediaMess = await quoted.download();
           if ((quoted.msg || quoted).seconds > 15) {
             await doReact("❌");
-            return Atlas.sendMessage(
+            return shadow.sendMessage(
               m.from,
               { text: "Please send video less than 15 seconds." },
-              { quoted: m }
+              { quoted: m },
             );
           }
           let stickerMess = new Sticker(mediaMess, {
@@ -96,11 +96,15 @@ module.exports = {
             background: "transparent",
           });
           const stickerBuffer2 = await stickerMess.toBuffer();
-          Atlas.sendMessage(m.from, { sticker: stickerBuffer2 }, { quoted: m });
+          shadow.sendMessage(
+            m.from,
+            { sticker: stickerBuffer2 },
+            { quoted: m },
+          );
         } else {
           await doReact("❌");
           m.reply(
-            `Please mention an *image/video* and type *${prefix}s* to create sticker.`
+            `Please mention an *image/video* and type *${prefix}s* to create sticker.`,
           );
         }
         break;
@@ -134,11 +138,11 @@ module.exports = {
             background: "transparent",
           });
           const stickerBuffer = await stickerMess.toBuffer();
-          Atlas.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
+          shadow.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
         } else {
           await doReact("❌");
           m.reply(
-            `Please mention a *Sticker* and type *${prefix}steal <packname , authorname>* to create sticker with your name.`
+            `Please mention a *Sticker* and type *${prefix}steal <packname , authorname>* to create sticker with your name.`,
           );
         }
 
@@ -159,7 +163,7 @@ module.exports = {
             background: "transparent",
           });
           const stickerBuffer = await stickerMess.toBuffer();
-          Atlas.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
+          shadow.sendMessage(m.from, { sticker: stickerBuffer }, { quoted: m });
         } else if (/video/.test(mime)) {
           await doReact("🃏");
           let mediaMess = await quoted.download();
@@ -177,11 +181,15 @@ module.exports = {
             background: "transparent",
           });
           const stickerBuffer2 = await stickerMess.toBuffer();
-          Atlas.sendMessage(m.from, { sticker: stickerBuffer2 }, { quoted: m });
+          shadow.sendMessage(
+            m.from,
+            { sticker: stickerBuffer2 },
+            { quoted: m },
+          );
         } else {
           await doReact("❌");
           m.reply(
-            `Please mention an *imade/video* and type *${prefix}s* to create cropped sticker.`
+            `Please mention an *imade/video* and type *${prefix}s* to create cropped sticker.`,
           );
         }
         break;
@@ -192,11 +200,11 @@ module.exports = {
           if (!text) {
             await doReact("❔");
             return m.reply(
-              `Please type *${prefix}smeme <text>* to create sticker meme.`
+              `Please type *${prefix}smeme <text>* to create sticker meme.`,
             );
           }
           await doReact("📮");
-          media = await Atlas.downloadAndSaveMediaMessage(quoted);
+          media = await shadow.downloadAndSaveMediaMessage(quoted);
           mem = await TelegraPh(media);
           meme = `https://api.memegen.link/images/custom/-/${text}.png?background=${mem}`;
 
@@ -211,16 +219,16 @@ module.exports = {
           });
 
           const stickerBuffer2 = await stickerMess.toBuffer();
-          await Atlas.sendMessage(
+          await shadow.sendMessage(
             m.from,
             { sticker: stickerBuffer2 },
-            { quoted: m }
+            { quoted: m },
           );
           fs.unlinkSync(media);
         } else {
           await doReact("❌");
           m.reply(
-            `Please mention an *image* and type *${prefix}smeme* to create sticker meme.`
+            `Please mention an *image* and type *${prefix}smeme* to create sticker meme.`,
           );
         }
         break;
@@ -230,19 +238,19 @@ module.exports = {
         if (!text && !m.quoted) {
           await doReact("❔");
           return m.reply(
-            `Please provide a text (Type or mention a message) !\n\nExample: ${prefix}q Atlas MD is OP`
+            `Please provide a text (Type or mention a message) !\n\nExample: ${prefix}q shadow MD is OP`,
           );
         }
 
         if (m.quoted) {
           try {
-            userPfp = await Atlas.profilePictureUrl(m.quoted.sender, "image");
+            userPfp = await shadow.profilePictureUrl(m.quoted.sender, "image");
           } catch (e) {
             userPfp = botImage3;
           }
         } else {
           try {
-            userPfp = await Atlas.profilePictureUrl(m.sender, "image");
+            userPfp = await shadow.profilePictureUrl(m.sender, "image");
           } catch (e) {
             userPfp = botImage3;
           }
@@ -281,13 +289,13 @@ module.exports = {
           quoteJson,
           {
             headers: { "Content-Type": "application/json" },
-          }
+          },
         );
 
         fs.writeFileSync(
           "quote.png",
           quoteResponse.data.result.image,
-          "base64"
+          "base64",
         );
 
         let stickerMess = new Sticker("quote.png", {
@@ -301,11 +309,8 @@ module.exports = {
         });
 
         const stickerBuffer2 = await stickerMess.toBuffer();
-        await Atlas.sendMessage(
-          m.from,
-          { sticker: stickerBuffer2 },
-          { quoted: m }
-        )
+        await shadow
+          .sendMessage(m.from, { sticker: stickerBuffer2 }, { quoted: m })
           .then((result) => {
             fs.unlinkSync("quote.png");
           })
@@ -321,15 +326,15 @@ module.exports = {
           return m.reply(
             `Please provide two emojis to combine! *Example :* ${
               prefix + "emojimix"
-            } 🦉+🤣`
+            } 🦉+🤣`,
           );
         }
         await doReact("🔖");
         let [emoji1, emoji2] = args[0].split("+");
         let jsonData = await fetch(
           `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(
-            emoji1
-          )}_${encodeURIComponent(emoji2)}`
+            emoji1,
+          )}_${encodeURIComponent(emoji2)}`,
         ).then((res) => res.json());
 
         let imgUrl = jsonData.results[0].url;
@@ -349,10 +354,10 @@ module.exports = {
         });
 
         const stickerBuffer = await stickerMess2.toBuffer();
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           { sticker: stickerBuffer },
-          { quoted: m }
+          { quoted: m },
         );
         await fs.unlinkSync("emoji.png");
 
