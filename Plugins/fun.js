@@ -44,9 +44,9 @@ module.exports = {
   ],
   description: "All fun Commands",
   start: async (
-    Atlas,
+    shadow,
     m,
-    { text, args, prefix, inputCMD, mentionedJid, mentionByTag,doReact }
+    { text, args, prefix, inputCMD, mentionedJid, mentionByTag, doReact },
   ) => {
     function randomNumberPicker(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
@@ -147,10 +147,10 @@ module.exports = {
         ];
         const truthData = truth[Math.floor(Math.random() * truth.length)];
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           { image: { url: botImage3 }, caption: `*${truthData}*` },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
@@ -242,55 +242,57 @@ module.exports = {
 
         const dareData = dare[Math.floor(Math.random() * dare.length)];
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           { image: { url: botImage3 }, caption: `*${dareData}*` },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
       case "coinflip":
-        await doReact("🧫️")
+        await doReact("🧫️");
         let result = Math.floor(Math.random() * 2) + 1;
         if (result === 1) {
-          await Atlas.sendMessage(m.from, { text: "Heads" }, { quoted: m });
+          await shadow.sendMessage(m.from, { text: "Heads" }, { quoted: m });
         } else {
-          await Atlas.sendMessage(m.from, { text: "Tails" }, { quoted: m });
+          await shadow.sendMessage(m.from, { text: "Tails" }, { quoted: m });
         }
         break;
 
       case "dice":
-        await doReact("🎲️")
+        await doReact("🎲️");
         let max = parseInt(args[0]);
         if (!max)
-          return Atlas.sendMessage(
+          return shadow.sendMessage(
             m.from,
             { text: "Please provide a maximum number of sides for the dice." },
-            { quoted: m }
+            { quoted: m },
           );
         let roll = Math.floor(Math.random() * max) + 1;
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           { text: `You rolled a ${roll}!` },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
       case "fact":
-        await doReact("🤓")
+        await doReact("🤓");
         await axios
           .get(`https://nekos.life/api/v2/fact`)
           .then((response) => {
             const tet = `*『  Random Facts  』* \n\n${response.data.fact}`;
 
-            Atlas.sendMessage(
+            shadow.sendMessage(
               m.from,
               { image: { url: botImage4 }, caption: tet + "\n" },
-              { quoted: m }
+              { quoted: m },
             );
           })
           .catch((err) => {
-            m.reply(`An error occurred.`);
+            m.reply(
+              `*Uhh, I seem to have encountered an error in my grand design.*`,
+            );
           });
         break;
 
@@ -305,10 +307,10 @@ module.exports = {
       case "lesbiancheck":
         if (!text && !m.quoted) {
           await doReact("❌");
-          return Atlas.sendMessage(
+          return shadow.sendMessage(
             m.from,
             { text: `Please tag a user to use this command!` },
-            { quoted: m }
+            { quoted: m },
           );
         } else if (m.quoted) {
           var mentionedUser = m.quoted.sender;
@@ -318,28 +320,28 @@ module.exports = {
         await doReact("👀");
         const dey = randomNumberPicker(1, 100);
 
-        let Atlastext = `${
+        let shadowtext = `${
           inputCMD.charAt(0).toUpperCase() + inputCMD.slice(1)
         } Check Of : @${mentionedUser.split("@")[0]}\n\nAnswer : *${dey}%*`;
 
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             image: { url: botImage3 },
-            caption: Atlastext,
+            caption: shadowtext,
             mentions: [mentionedUser],
           },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
       case "charactercheck":
         if (!text && !m.quoted) {
           await doReact("❌");
-          return Atlas.sendMessage(
+          return shadow.sendMessage(
             m.from,
             { text: `Please tag a user to use this command!` },
-            { quoted: m }
+            { quoted: m },
           );
         } else if (m.quoted) {
           var mentionedUser = m.quoted.sender;
@@ -366,18 +368,18 @@ module.exports = {
         const userCharacterSeletion =
           userChar[Math.floor(Math.random() * userChar.length)];
 
-        let Atlastext4 = `Character Check Of : @${
+        let shadowtext4 = `Character Check Of : @${
           mentionedUser.split("@")[0]
         }\n\nAnswer : *${userCharacterSeletion}*`;
 
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             image: { url: botImage3 },
-            caption: Atlastext4,
+            caption: shadowtext4,
             mentions: [mentionedUser],
           },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
