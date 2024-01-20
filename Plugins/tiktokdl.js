@@ -12,22 +12,14 @@ module.exports = {
   uniquecommands: ["tiktok", "tiktokmp3", "tiktokmp4", "tiktokdoc"],
   description: "All Tiktok Downloader Commands",
   start: async (
-    Atlas,
+    shadow,
     m,
-    {
-      inputCMD,
-      text,
-      prefix,
-      doReact,
-      args,
-      isMedia,
-      quoted,
-    }
+    { inputCMD, text, prefix, doReact, args, isMedia, quoted },
   ) => {
     if (!text) {
       await doReact("❌");
       return m.reply(
-        `Please provide a Toktok video link !\n\nExample: ${prefix}say Atlas MD is OP`
+        `Please provide a Toktok video link !\n\nExample: ${prefix}say SHADOW MD is OP`,
       );
     }
     if (!text.includes("tiktok")) {
@@ -59,17 +51,17 @@ module.exports = {
 
         txtmain = `
           *『 Tiktok Downloader 』*
-    
+
 *🧩 Video Url :* _${text}_\n\n
 *📌 Select the format*
 *${prefix}tiktokmp3 <link>*
 *${prefix}tiktokmp4 <link>*
 *${prefix}tiktokdoc <link>*`;
 
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           { image: { url: botImage1 }, caption: txtmain },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -80,10 +72,10 @@ module.exports = {
         require("../System/Tiktokscraper")
           .Tiktok(args[0])
           .then((data) => {
-            Atlas.sendMessage(
+            shadow.sendMessage(
               m.from,
               { audio: { url: data.audio }, mimetype: "audio/mpeg" },
-              { quoted: m }
+              { quoted: m },
             );
           });
 
@@ -95,13 +87,13 @@ module.exports = {
         require("../System/Tiktokscraper")
           .Tiktok(args[0])
           .then((data) => {
-            Atlas.sendMessage(
+            shadow.sendMessage(
               m.from,
               {
                 video: { url: data.watermark },
                 caption: `Downloaded by: *${botName}*`,
               },
-              { quoted: m }
+              { quoted: m },
             );
           });
 
@@ -113,14 +105,14 @@ module.exports = {
         require("../System/Tiktokscraper")
           .Tiktok(args[0])
           .then((data) => {
-            Atlas.sendMessage(
+            shadow.sendMessage(
               m.from,
               {
                 document: { url: data.audio },
                 mimetype: "audio/mpeg",
                 fileName: `Downloaded by ${botName}.mp3`,
               },
-              { quoted: m }
+              { quoted: m },
             );
           });
 
