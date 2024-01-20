@@ -23,24 +23,24 @@ module.exports = {
   alias: [...mergedCommands],
   uniquecommands: ["song", "video", "ytmp3", "ytmp4"],
   description: "All file dowloader commands",
-  start: async (Atlas, m, { inputCMD, text, doReact, prefix, pushName }) => {
+  start: async (shadow, m, { inputCMD, text, doReact, prefix, pushName }) => {
     switch (inputCMD) {
       case "play":
       case "song":
         if (!text) {
           await doReact("❌");
           return m.reply(
-            `Please provide a song name !\n\nExample: *${prefix}song despacito*`
+            `Please provide a song name !\n\nExample: *${prefix}song despacito*`,
           );
         }
         await doReact("📥");
-        thumbAtlas = "https://graph.org/file/d0a287fa875c809f234ce.jpg";
+        thumbshadow = "https://graph.org/file/d0a287fa875c809f234ce.jpg";
         songInfo = await yts(text);
         song = songInfo.videos[0];
         videoUrl = song.url;
         videoId = videoUrl.split("v=")[1];
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             image: { url: song.thumbnail },
@@ -52,7 +52,7 @@ _🎀 Channel Name:_ *${song.author.name}*
 
 _🏮 Video Uploaded:_ *${song.ago}*\n`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         YT.mp3(videoId).then((file) => {
@@ -65,16 +65,16 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
               console.error("Error converting to opus:", err);
             })
             .on("end", async () => {
-              await Atlas.sendPresenceUpdate("recording", m.from);
+              await shadow.sendPresenceUpdate("recording", m.from);
 
-              Atlas.sendMessage(
+              shadow.sendMessage(
                 m.from,
                 {
                   audio: fs.readFileSync(outputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
                 },
-                { quoted: m }
+                { quoted: m },
               );
 
               fs.unlinkSync(inputPath);
@@ -96,7 +96,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         ) {
           await doReact("❌");
           return m.reply(
-            `Please provide a valid YouTube Video link to download as audio!\n\nExample: *${prefix}mp3 put_link*`
+            `Please provide a valid YouTube Video link to download as audio!\n\nExample: *${prefix}mp3 put_link*`,
           );
         }
         await doReact("📥");
@@ -104,9 +104,9 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         song = songInfo.videos[0];
         videoUrl = song.url;
         videoId = videoUrl.split("v=")[1];
-        thumbAtlas = "https://graph.org/file/d0a287fa875c809f234ce.jpg";
+        thumbshadow = "https://graph.org/file/d0a287fa875c809f234ce.jpg";
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             image: { url: song.thumbnail },
@@ -118,7 +118,7 @@ _🎀 Channel Name:_ *${song.author.name}*
 
 _🏮 Video Uploaded:_ *${song.ago}*\n`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         YT.mp3(videoId).then((file) => {
@@ -131,18 +131,18 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
               console.error("Error converting to opus:", err);
             })
             .on("end", async () => {
-              const thumbnailBuffer = await getBuffer(thumbAtlas);
+              const thumbnailBuffer = await getBuffer(thumbshadow);
 
-              await Atlas.sendPresenceUpdate("recording", m.from);
+              await shadow.sendPresenceUpdate("recording", m.from);
 
-              Atlas.sendMessage(
+              shadow.sendMessage(
                 m.from,
                 {
                   audio: fs.readFileSync(inputPath),
                   mimetype: "audio/mpeg",
                   ptt: true,
                 },
-                { quoted: m }
+                { quoted: m },
               );
 
               fs.unlinkSync(inputPath);
@@ -164,7 +164,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         ) {
           await doReact("❌");
           return m.reply(
-            `Please provide a valid YouTube Video link to download as audio!\n\nExample: *${prefix}mp4 put_link*`
+            `Please provide a valid YouTube Video link to download as audio!\n\nExample: *${prefix}mp4 put_link*`,
           );
         }
         await doReact("📥");
@@ -174,7 +174,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         videoId = videoUrl.split("v=")[1];
         result = await yts(videoId);
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             image: { url: song.thumbnail },
@@ -186,17 +186,17 @@ _🎀 Channel Name:_ *${song.author.name}*
 
 _🏮 Video Uploaded:_ *${song.ago}*\n`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         const ytaud3 = await YT.mp4(videoUrl);
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             video: { url: ytaud3.videoUrl },
             caption: `${song.title} By: *${botName}*`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -205,7 +205,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         if (!text) {
           await doReact("❌");
           return m.reply(
-            `Please provide an YouTube video name !\n\nExample: *${prefix}video dandilions*`
+            `Please provide an YouTube video name !\n\nExample: *${prefix}video dandilions*`,
           );
         }
         await doReact("📥");
@@ -215,7 +215,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         videoUrl = song.url;
         videoId = videoUrl.split("v=")[1];
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             image: { url: song.thumbnail },
@@ -227,17 +227,17 @@ _🎀 Channel Name:_ *${song.author.name}*
 
 _🏮 Video Uploaded:_ *${song.ago}*\n`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         const ytaud2 = await YT.mp4(videoUrl);
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             video: { url: ytaud2.videoUrl },
             caption: `${song.title} By: *${botName}*`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -254,7 +254,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
         let num = 1;
 
         var txt = `*🏮 YouTube Search Engine 🏮*\n\n_🧩 Search Term:_ *${args.join(
-          " "
+          " ",
         )}*\n\n*📌 Total Results:* *${search.all.length}*\n`;
 
         for (let i of search.all) {
@@ -268,7 +268,7 @@ _🏮 Video Uploaded:_ *${song.ago}*\n`,
           caption: txt,
         };
 
-        Atlas.sendMessage(m.from, buttonMessage, { quoted: m });
+        shadow.sendMessage(m.from, buttonMessage, { quoted: m });
         break;
 
       default:
