@@ -1,5 +1,5 @@
 {
-  "name": "Atlas-MD",
+  "name": "SHADOW-MD",
   "description": "The future of WhatsApp bots now with plugin support.",
   "keywords": [
     "bot",
@@ -14,8 +14,8 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/FantoX/Atlas-MD#readme",
-  "repository": "https://github.com/FantoX/Atlas-MD.git",
+  "website": "https://github.com/Cipher0071/SHADOW-MD#readme",
+  "repository": "https://github.com/Cipher0071/SHADOW-MD.git",
   "logo": "https://graph.org/file/02abf0fd8fc2a13cc67a1.jpg",
   "success_url": "/",
   "env": {
@@ -35,7 +35,7 @@
       "required": false
     },
     "PACKNAME": {
-      "description": "Put a sticker packname here. Default is: Atlas Bot",
+      "description": "Put a sticker packname here. Default is: shadow bot",
       "required": false
     },
     "MONGODB": {
