@@ -65,7 +65,7 @@ module.exports = {
     "yeet",
   ],
   description: "All reaction Commands",
-  start: async (Atlas, m, { text, prefix, mentionByTag, doReact }) => {
+  start: async (shadow, m, { text, prefix, mentionByTag, doReact }) => {
     const suitableWords = {
       bite: "bited",
       blush: "is blushing at",
@@ -110,14 +110,14 @@ module.exports = {
       const reactionList = `🎃 *Available Reactions:*\n\n- ${reactions
         .map((reaction) => capitalize(reaction))
         .join(
-          "\n- "
+          "\n- ",
         )}\n🛠️ *Usage:* ${prefix}reaction (reaction) [tag/quote user] | ${prefix}(reaction) [tag/quote user]\nExample: ${prefix}pat`;
       return void (await m.reply(reactionList));
     }
     const reaction = flag ? command : text.split(" ")[0].trim().toLowerCase();
     if (!flag && !reactions.includes(reaction))
       return void m.reply(
-        `Invalid reaction. Use *${prefix}react* to see all of the available reactions`
+        `Invalid reaction. Use *${prefix}react* to see all of the available reactions`,
       );
     const users = mentionByTag;
     if (m.quoted && !users.includes(m.quoted.sender))
@@ -128,7 +128,7 @@ module.exports = {
     const { url } = await fetchJson(`https://api.waifu.pics/sfw/${reaction}`);
     const result = await getBuffer(url);
     const buffer = await GIFBufferToVideoBuffer(Buffer.from(result, "utf-8"));
-    await Atlas.sendMessage(
+    await shadow.sendMessage(
       m.from,
       {
         video: buffer,
@@ -138,7 +138,7 @@ module.exports = {
         }*`,
         mentions: [m.sender, reactant],
       },
-      { quoted: m }
+      { quoted: m },
     );
   },
 };
