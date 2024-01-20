@@ -8,7 +8,7 @@ const {
   delay,
   downloadContentFromMessage,
   getBinaryNodeChild,
-} = require("baileysjs");
+} = require("@whiskeysockets/baileys");
 const fs = require("fs");
 const FileType = require("file-type");
 const { getRandom, fetchBuffer } = require("./Function");
@@ -35,7 +35,7 @@ class WAConnection {
    */
   parseMention(text) {
     return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(
-      (v) => v[1] + "@s.whatsapp.net"
+      (v) => v[1] + "@s.whatsapp.net",
     );
   }
 
@@ -106,7 +106,7 @@ exports.serialize = (Atlas, m, options = {}) => {
     m.isBot = m.id.startsWith("BAE5") && m.id.length == 16;
     m.isGroup = m.from.endsWith("@g.us");
     m.sender = jidNormalizedUser(
-      (m.fromMe && Atlas.user?.id) || m.key.participant || m.from || ""
+      (m.fromMe && Atlas.user?.id) || m.key.participant || m.from || "",
     );
   }
   if (m.message) {
@@ -121,7 +121,7 @@ exports.serialize = (Atlas, m, options = {}) => {
       m.quoted.mentions = m.msg.contextInfo.mentionedJid;
       m.quoted.id = m.msg.contextInfo.stanzaId;
       m.quoted.sender = jidNormalizedUser(
-        m.msg.contextInfo.participant || m.sender
+        m.msg.contextInfo.participant || m.sender,
       );
       m.quoted.from = m.from;
       m.quoted.isGroup = m.quoted.from.endsWith("@g.us");

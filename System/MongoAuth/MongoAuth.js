@@ -1,4 +1,4 @@
-const { initAuthCreds, BufferJSON, proto } = require("baileysjs");
+const { initAuthCreds, BufferJSON, proto } = require("@whiskeysockets/baileys");
 const Database = require("./AuthDB");
 
 module.exports = class Authenication {
@@ -33,11 +33,11 @@ module.exports = class Authenication {
           keys,
         },
         BufferJSON.replacer,
-        2
+        2,
       );
       await this.DB.session.updateOne(
         { sessionId: this.sessionId },
-        { $set: { session } }
+        { $set: { session } },
       );
     };
 

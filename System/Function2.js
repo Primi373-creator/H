@@ -1,4 +1,4 @@
-const { proto, delay, getContentType } = require("baileysjs");
+const { proto, delay, getContentType } = require("@whiskeysockets/baileys");
 const chalk = require("chalk");
 const fs = require("fs");
 const { unlink } = require("fs").promises;
@@ -98,8 +98,8 @@ exports.isUrl = (url) => {
   return url.match(
     new RegExp(
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/,
-      "gi"
-    )
+      "gi",
+    ),
   );
 };
 
@@ -231,7 +231,7 @@ exports.getSizeMedia = (path) => {
 
 exports.parseMention = (text = "") => {
   return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(
-    (v) => v[1] + "@s.whatsapp.net"
+    (v) => v[1] + "@s.whatsapp.net",
   );
 };
 
@@ -239,7 +239,7 @@ exports.GIFBufferToVideoBuffer = async (image) => {
   const filename = `${Math.random().toString(36)}`;
   await fs.writeFileSync(`./System/Cache/${filename}.gif`, image);
   child_process.exec(
-    `ffmpeg -i ./System/Cache/${filename}.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ./System/Cache/${filename}.mp4`
+    `ffmpeg -i ./System/Cache/${filename}.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ./System/Cache/${filename}.mp4`,
   );
   await sleep(4000);
 
@@ -271,7 +271,7 @@ exports.smsg = (conn, m, store) => {
         m.participant ||
         m.key.participant ||
         m.chat ||
-        ""
+        "",
     );
     if (m.isGroup) m.participant = conn.decodeJid(m.key.participant) || "";
   }

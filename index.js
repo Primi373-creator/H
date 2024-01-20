@@ -6,7 +6,7 @@ const {
   downloadContentFromMessage,
   makeInMemoryStore,
   jidDecode,
-} = require("baileysjs");
+} = require("@whiskeysockets/baileys");
 const fs = require("fs");
 const figlet = require("figlet");
 const { join } = require("path");
@@ -45,14 +45,14 @@ const startAtlas = async () => {
   try {
     await mongoose.connect(mongodb).then(() => {
       console.log(
-        chalk.greenBright("Establishing secure connection with MongoDB...\n")
+        chalk.greenBright("Establishing secure connection with MongoDB...\n"),
       );
     });
   } catch (err) {
     console.log(
       chalk.redBright(
-        "Error connecting to MongoDB ! Please check MongoDB URL or try again after some minutes !\n"
-      )
+        "Error connecting to MongoDB ! Please check MongoDB URL or try again after some minutes !\n",
+      ),
     );
     console.log(err);
   }
@@ -66,7 +66,7 @@ const startAtlas = async () => {
       vertivalLayout: "default",
       width: 70,
       whitespaceBreak: true,
-    })
+    }),
   );
   console.log(`\n`);
 
@@ -94,19 +94,19 @@ const startAtlas = async () => {
     } catch (err) {
       console.log(
         chalk.redBright(
-          "Error connecting to MongoDB ! Please re-check MongoDB URL or try again after some minutes !\n"
-        )
+          "Error connecting to MongoDB ! Please re-check MongoDB URL or try again after some minutes !\n",
+        ),
       );
       console.log(err);
     }
 
     if (!plugins.length || plugins.length == 0) {
       console.log(
-        chalk.redBright("No Extra Plugins Installed ! Starting Atlas...\n")
+        chalk.redBright("No Extra Plugins Installed ! Starting Atlas...\n"),
       );
     } else {
       console.log(
-        chalk.greenBright(plugins.length + " Plugins found ! Installing...\n")
+        chalk.greenBright(plugins.length + " Plugins found ! Installing...\n"),
       );
       for (let i = 0; i < plugins.length; i++) {
         pluginUrl = plugins[i];
@@ -125,8 +125,8 @@ const startAtlas = async () => {
       }
       console.log(
         chalk.greenBright(
-          "All Plugins Installed Successfully ! Starting Atlas...\n"
-        )
+          "All Plugins Installed Successfully ! Starting Atlas...\n",
+        ),
       );
     }
   }
@@ -145,7 +145,7 @@ const startAtlas = async () => {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
       if (reason === DisconnectReason.badSession) {
         console.log(
-          `[ ATLAS ] Bad Session File, Please Delete Session and Scan Again.\n`
+          `[ ATLAS ] Bad Session File, Please Delete Session and Scan Again.\n`,
         );
         process.exit();
       } else if (reason === DisconnectReason.connectionClosed) {
@@ -156,13 +156,13 @@ const startAtlas = async () => {
         startAtlas();
       } else if (reason === DisconnectReason.connectionReplaced) {
         console.log(
-          "[ ATLAS ] Connection Replaced, Another New Session Opened, Please Close Current Session First!\n"
+          "[ ATLAS ] Connection Replaced, Another New Session Opened, Please Close Current Session First!\n",
         );
         process.exit();
       } else if (reason === DisconnectReason.loggedOut) {
         clearState();
         console.log(
-          `[ ATLAS ] Device Logged Out, Please Delete Session and Scan Again.\n`
+          `[ ATLAS ] Device Logged Out, Please Delete Session and Scan Again.\n`,
         );
         process.exit();
       } else if (reason === DisconnectReason.restartRequired) {
@@ -173,7 +173,7 @@ const startAtlas = async () => {
         startAtlas();
       } else {
         console.log(
-          `[ ATLAS ] Server Disconnected: "It's either safe disconnect or WhatsApp Account got banned !\n"`
+          `[ ATLAS ] Server Disconnected: "It's either safe disconnect or WhatsApp Account got banned !\n"`,
         );
       }
     }
@@ -208,8 +208,8 @@ const startAtlas = async () => {
           v.name ||
             v.subject ||
             PhoneNumber("+" + id.replace("@s.whatsapp.net", "")).getNumber(
-              "international"
-            )
+              "international",
+            ),
         );
       });
     else
@@ -220,14 +220,14 @@ const startAtlas = async () => {
               name: "WhatsApp",
             }
           : id === Atlas.decodeJid(Atlas.user.id)
-          ? Atlas.user
-          : store.contacts[id] || {};
+            ? Atlas.user
+            : store.contacts[id] || {};
     return (
       (withoutContact ? "" : v.name) ||
       v.subject ||
       v.verifiedName ||
       PhoneNumber("+" + jid.replace("@s.whatsapp.net", "")).getNumber(
-        "international"
+        "international",
       )
     );
   };
@@ -257,7 +257,7 @@ const startAtlas = async () => {
   Atlas.downloadAndSaveMediaMessage = async (
     message,
     filename,
-    attachExtension = true
+    attachExtension = true,
   ) => {
     let quoted = message.msg ? message.msg : message;
     let mime = (message.msg || message).mimetype || "";
@@ -292,7 +292,7 @@ const startAtlas = async () => {
 
   Atlas.parseMention = async (text) => {
     return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(
-      (v) => v[1] + "@s.whatsapp.net"
+      (v) => v[1] + "@s.whatsapp.net",
     );
   };
 
@@ -305,7 +305,7 @@ const startAtlas = async () => {
       },
       {
         quoted,
-      }
+      },
     );
 
   Atlas.getFile = async (PATH, save) => {
@@ -313,14 +313,14 @@ const startAtlas = async () => {
     let data = Buffer.isBuffer(PATH)
       ? PATH
       : /^data:.*?\/.*?;base64,/i.test(PATH)
-      ? Buffer.from(PATH.split`,`[1], "base64")
-      : /^https?:\/\//.test(PATH)
-      ? await (res = await getBuffer(PATH))
-      : fs.existsSync(PATH)
-      ? ((filename = PATH), fs.readFileSync(PATH))
-      : typeof PATH === "string"
-      ? PATH
-      : Buffer.alloc(0);
+        ? Buffer.from(PATH.split`,`[1], "base64")
+        : /^https?:\/\//.test(PATH)
+          ? await (res = await getBuffer(PATH))
+          : fs.existsSync(PATH)
+            ? ((filename = PATH), fs.readFileSync(PATH))
+            : typeof PATH === "string"
+              ? PATH
+              : Buffer.alloc(0);
 
     let type = (await FileType.fromBuffer(data)) || {
       mime: "application/octet-stream",
@@ -328,7 +328,7 @@ const startAtlas = async () => {
     };
     filename = path.join(
       __filename,
-      "../src/" + new Date() * 1 + "." + type.ext
+      "../src/" + new Date() * 1 + "." + type.ext,
     );
     if (data && save) fs.promises.writeFile(filename, data);
     return {
@@ -397,7 +397,7 @@ const startAtlas = async () => {
       {
         quoted,
         ...options,
-      }
+      },
     );
     return fs.promises.unlink(pathFile);
   };
