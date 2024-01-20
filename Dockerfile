@@ -15,4 +15,6 @@ RUN yarn install
 
 COPY . .
 
+EXPOSE 10000
+
 CMD ["pm2-runtime", "."]
