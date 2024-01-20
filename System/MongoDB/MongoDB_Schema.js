@@ -1,10 +1,11 @@
+//SHADOW-MD
 const mongoose = require("mongoose");
 const config = require("../../Configurations.js");
 const options = {
   socketTimeoutMS: 30000,
 };
 
-// ----------------------- Atlas can work with upto 4 MongoDB databases at once to distribute DB load  -------------------- //
+// ----------------------- Shadows can work with upto 4 MongoDB databases at once to distribute DB load  -------------------- //
 
 const db1 = mongoose.createConnection(config.mongodb, options); // You malually put first mongodb url here
 const db2 = mongoose.createConnection(config.mongodb, options); // You malually put second mongodb url here
