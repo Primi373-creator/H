@@ -1,3 +1,4 @@
+//SHADOW-MD
 const { sessionSchema } = require("./Schema");
 
 module.exports = class Database {
