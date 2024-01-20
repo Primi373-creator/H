@@ -37,9 +37,9 @@ module.exports = {
   ],
   description: "All converter related commands",
   start: async (
-    Atlas,
+    shadow,
     m,
-    { inputCMD, text, quoted, doReact, prefix, mime }
+    { inputCMD, text, quoted, doReact, prefix, mime },
   ) => {
     switch (inputCMD) {
       case "toimg":
@@ -47,29 +47,29 @@ module.exports = {
         if (!m.quoted && !/webp/.test(mime)) {
           await doReact("❔");
           return m.reply(
-            `Please reply to a *Non-animated* sticker to convert it to image`
+            `Please reply to a *Non-animated* sticker to convert it to image`,
           );
         }
         await doReact("🎴");
-        let mediaMess = await Atlas.downloadAndSaveMediaMessage(quoted);
+        let mediaMess = await shadow.downloadAndSaveMediaMessage(quoted);
         let ran = await getRandom(".png");
         exec(`ffmpeg -i ${mediaMess} ${ran}`, (err) => {
           fs.unlinkSync(mediaMess);
           if (err) {
-            Atlas.sendMessage(
+            shadow.sendMessage(
               m.from,
               {
                 text: `Please mention a *Non-animated* sticker to process ! \n\nOr use *${prefix}togif* / *${prefix}tomp4*  to process *Animated* sticker !`,
               },
-              { quoted: m }
+              { quoted: m },
             );
             return;
           }
           let buffer = fs.readFileSync(ran);
-          Atlas.sendMessage(
+          shadow.sendMessage(
             m.from,
             { image: buffer, caption: `_Converted by:_  *${botName}*\n` },
-            { quoted: m }
+            { quoted: m },
           );
           fs.unlinkSync(ran);
         });
@@ -79,20 +79,20 @@ module.exports = {
         if (!m.quoted && !/webp/.test(mime)) {
           await doReact("❔");
           return reply(
-            `Please reply to an *Animated* sticker to convert it to video !`
+            `Please reply to an *Animated* sticker to convert it to video !`,
           );
         }
         await doReact("🎴");
-        let mediaMess2 = await Atlas.downloadAndSaveMediaMessage(quoted);
+        let mediaMess2 = await shadow.downloadAndSaveMediaMessage(quoted);
         let webpToMp4 = await webp2mp4File(mediaMess2);
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             video: { url: webpToMp4.result },
             caption: `_Converted by:_  *${botName}*\n`,
           },
-          { quoted: m }
+          { quoted: m },
         );
         fs.unlinkSync(mediaMess2);
         break;
@@ -101,21 +101,21 @@ module.exports = {
         if (!m.quoted && !/webp/.test(mime)) {
           await doReact("❔");
           return m.reply(
-            `Please reply to an *Animated* sticker to convert it to gif !`
+            `Please reply to an *Animated* sticker to convert it to gif !`,
           );
         }
         await doReact("🎴");
-        let mediaMess3 = await Atlas.downloadAndSaveMediaMessage(quoted);
+        let mediaMess3 = await shadow.downloadAndSaveMediaMessage(quoted);
         let webpToMp42 = await webp2mp4File(mediaMess3);
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             video: { url: webpToMp42.result },
             caption: `_Converted by:_  *${botName}*\n`,
             gifPlayback: true,
           },
-          { quoted: m }
+          { quoted: m },
         );
         fs.unlinkSync(mediaMess3);
 
@@ -125,33 +125,33 @@ module.exports = {
         if (/document/.test(mime)) {
           await doReact("❌");
           return m.reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`,
           );
         }
         if (!/video/.test(mime) && !/audio/.test(mime)) {
           await doReact("❌");
           return reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`,
           );
         }
         if (!m.quoted) {
           await doReact("❔");
           return m.reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix}tomp3`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix}tomp3`,
           );
         }
         await doReact("🎶");
         let media = await quoted.download();
-        await Atlas.sendPresenceUpdate("recording", m.from);
+        await shadow.sendPresenceUpdate("recording", m.from);
         let audio = await toAudio(media, "mp4");
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             document: audio,
             mimetype: "audio/mpeg",
             fileName: `Converted By ${botName} ${m.id}.mp3`,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -160,29 +160,29 @@ module.exports = {
         if (/document/.test(mime)) {
           await doReact("❌");
           return m.reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`,
           );
         }
         if (!/video/.test(mime) && !/audio/.test(mime)) {
           await doReact("❌");
           return m.reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption *${prefix}tomp3*`,
           );
         }
         if (!m.quoted) {
           await doReact("❔");
           return m.reply(
-            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix}tomp3`
+            `Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix}tomp3`,
           );
         }
         await doReact("🎶");
         let media2 = await quoted.download();
-        await Atlas.sendPresenceUpdate("recording", m.from);
+        await shadow.sendPresenceUpdate("recording", m.from);
         let audio2 = await toAudio(media2, "mp4");
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           { audio: audio2, mimetype: "audio/mpeg" },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
@@ -190,10 +190,10 @@ module.exports = {
         if (!m.quoted) {
           await doReact("❔");
           return m.reply(
-            `Plese provide an *Image* / *Video* to generate a link! With Caption ${prefix}tourl`
+            `Plese provide an *Image* / *Video* to generate a link! With Caption ${prefix}tourl`,
           );
         }
-        let media5 = await Atlas.downloadAndSaveMediaMessage(quoted);
+        let media5 = await shadow.downloadAndSaveMediaMessage(quoted);
         if (/image/.test(mime)) {
           await doReact("🔗");
           let anu = await GraphOrg(media5);
@@ -206,18 +206,18 @@ module.exports = {
           } catch (e) {
             await doReact("❌");
             await fs.unlinkSync(media5);
-            return Atlas.sendMessage(
+            return shadow.sendMessage(
               m.from,
               {
                 text: `*Your video size is too big!*\n\n*Max video size:* 5MB`,
               },
-              { quoted: m }
+              { quoted: m },
             );
           }
         } else {
           await doReact("❌");
           return m.reply(
-            `Plese provide an *Image* / *Video* to generate a link!`
+            `Plese provide an *Image* / *Video* to generate a link!`,
           );
         }
         await fs.unlinkSync(media5);
@@ -227,7 +227,7 @@ module.exports = {
       case "imgtopdf":
         if (/image/.test(mime)) {
           await doReact("📑");
-          let mediaMess4 = await Atlas.downloadAndSaveMediaMessage(quoted);
+          let mediaMess4 = await shadow.downloadAndSaveMediaMessage(quoted);
 
           async function generatePDF(path) {
             return new Promise((resolve, reject) => {
@@ -252,7 +252,7 @@ module.exports = {
 
           try {
             let randomFileName = `./${Math.floor(
-              Math.random() * 1000000000
+              Math.random() * 1000000000,
             )}.pdf`;
             const pdfPATH = randomFileName;
             await generatePDF(pdfPATH);
@@ -261,13 +261,13 @@ module.exports = {
             setTimeout(async () => {
               let pdf = fs.readFileSync(pdfPATH);
 
-              Atlas.sendMessage(
+              shadow.sendMessage(
                 m.from,
                 {
                   document: pdf,
                   fileName: `Converted By ${botName}.pdf`,
                 },
-                { quoted: m }
+                { quoted: m },
               );
 
               fs.unlinkSync(mediaMess4);
@@ -277,7 +277,7 @@ module.exports = {
             await doReact("❌");
             console.error(error);
             return m.reply(
-              `An error occurred while converting the image to PDF.`
+              `An error occurred while converting the image to PDF.`,
             );
           }
         } else {
@@ -289,17 +289,17 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an URL to convert into QR code!\n\nExample: *${prefix}toqr https://github.com/FantoX001*`
+            `Please provide an URL to convert into QR code!\n\nExample: *${prefix}toqr https://github.com/Cipher0071*`,
           );
         }
 
         const res = await getBuffer(
-          `https://www.qrtag.net/api/qr_8.png?url=${text}`
+          `https://www.qrtag.net/api/qr_8.png?url=${text}`,
         );
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           { image: res, caption: `\n*Source:* ${text}` },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
