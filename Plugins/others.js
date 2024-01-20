@@ -8,26 +8,35 @@ module.exports = {
   uniquecommands: ["toqr"],
   description: "Other commands",
   start: async (
-    Atlas,
+    shadow,
     m,
-    { pushName, prefix, inputCMD, doReact, text, args, participants, isCreator }
+    {
+      pushName,
+      prefix,
+      inputCMD,
+      doReact,
+      text,
+      args,
+      participants,
+      isCreator,
+    },
   ) => {
     switch (inputCMD) {
       case "toqr":
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an URL to convert into QR code!\n\nExample: *${prefix}toqr https://github.com/FantoX001*`
+            `Please provide an URL to convert into QR code!\n\nExample: *${prefix}toqr https://github.com/Cipher0071*`,
           );
         }
 
         const res = await getBuffer(
-          `https://www.qrtag.net/api/qr_8.png?url=${text}`
+          `https://www.qrtag.net/api/qr_8.png?url=${text}`,
         );
-        return Atlas.sendMessage(
+        return shadow.sendMessage(
           m.from,
           { image: res, caption: `\n*Source:* ${text}` },
-          { quoted: m }
+          { quoted: m },
         );
 
       default:
