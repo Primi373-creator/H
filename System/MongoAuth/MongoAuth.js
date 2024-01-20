@@ -1,3 +1,4 @@
+//SHADOW-MD
 const { initAuthCreds, BufferJSON, proto } = require("@whiskeysockets/baileys");
 const Database = require("./AuthDB");
 
