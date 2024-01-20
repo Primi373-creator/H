@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start index.js --max-old-space-size=4096 "
+    "start": "pm2 start index.js"
   },
   "repository": {
     "type": "git",
