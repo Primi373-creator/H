@@ -1,3 +1,4 @@
+//SHADOW-MD
 class Collections extends Map {
 	constructor(...args) {
 		super(...args);
