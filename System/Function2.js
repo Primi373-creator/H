@@ -1,3 +1,4 @@
+//=============================================//
 const { proto, delay, getContentType } = require("@whiskeysockets/baileys");
 const chalk = require("chalk");
 const fs = require("fs");
