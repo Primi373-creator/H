@@ -31,14 +31,14 @@ module.exports = {
     "github",
   ],
   description: "All picture related commands",
-  start: async (Atlas, m, { inputCMD, text, doReact, prefix, pushName }) => {
+  start: async (shadow, m, { inputCMD, text, doReact, prefix, pushName }) => {
     switch (inputCMD) {
       case "google":
       case "search":
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an image Search Term !\n\nExample: *${prefix}search Free Web development Course*`
+            `Please provide an image Search Term !\n\nExample: *${prefix}search Free Web development Course*`,
           );
         }
         await doReact("🔍");
@@ -52,7 +52,7 @@ module.exports = {
             googleSearch[num].snippet
           }*\n\n_🔷 Link:_ *${googleSearch[num].link}*\n\n\n`;
         }
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             video: {
@@ -61,7 +61,7 @@ module.exports = {
             gifPlayback: true,
             caption: resText,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -70,18 +70,18 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an lyrics Search Term !\n\nExample: *${prefix}lyrics Heat waves*`
+            `Please provide an lyrics Search Term !\n\nExample: *${prefix}lyrics Heat waves*`,
           );
         }
         await doReact("📃");
         let result = await axios.get(
-          "https://fantox001-scrappy-api.vercel.app/lyrics?search=" + text
+          "https://fantox001-scrappy-api.vercel.app/lyrics?search=" + text,
         );
         let lyrics = result.data.lyrics;
         let thumbnail = result.data.thumbnail;
 
-        let resText2 = `  *『  ⚡️ Lyrics Search Engine ⚡️  』*\n\n\n_Search Term:_ *${text}*\n\n\n*📍 Lyrics:* \n\n${lyrics}\n\n\n_*Powered by:*_ *Scrappy API - by FantoX*\n\n_*Url:*_ https://github.com/FantoX001/Scrappy-API \n`;
-        await Atlas.sendMessage(
+        let resText2 = `  *『  ⚡️ Lyrics Search Engine ⚡️  』*\n\n\n_Search Term:_ *${text}*\n\n\n*📍 Lyrics:* \n\n${lyrics}\n\n\n_*Powered by:*_ *Cipher*\n`;
+        await shadow.sendMessage(
           m.from,
           {
             image: {
@@ -89,7 +89,7 @@ module.exports = {
             },
             caption: resText2,
           },
-          { quoted: m }
+          { quoted: m },
         );
 
         break;
@@ -99,7 +99,7 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an Youtube Search Term !\n\nExample: *${prefix}yts Despacito*`
+            `Please provide an Youtube Search Term !\n\nExample: *${prefix}yts Despacito*`,
           );
         }
         await doReact("📜");
@@ -139,27 +139,27 @@ module.exports = {
           //sections,
         };
 
-        Atlas.sendMessage(m.from, buttonMessage, { quoted: m });
+        shadow.sendMessage(m.from, buttonMessage, { quoted: m });
         break;
 
       case "ringtone":
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an ringtone Search Term !\n\nExample: *${prefix}ringtone iphone*`
+            `Please provide an ringtone Search Term !\n\nExample: *${prefix}ringtone iphone*`,
           );
         }
         await doReact("🎶");
         let resultRT = await ringtone(text);
         let resultR = resultRT[Math.floor(Math.random() * resultRT.length)];
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             audio: { url: resultR.audio },
             fileName: text + ".mp3",
             mimetype: "audio/mpeg",
           },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
@@ -167,18 +167,17 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide an ringtone Search Term !\n\n*${prefix}weather Kolkata*`
+            `Please provide an ringtone Search Term !\n\n*${prefix}weather Kolkata*`,
           );
-
         }
         await doReact("🌤");
         var myweather = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=e409825a497a0c894d2dd975542234b0&language=tr`
+          `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=e409825a497a0c894d2dd975542234b0&language=tr`,
         );
 
         let weathertext = `           🌤 *Weather Report* 🌤  \n\n🔎 *Search Location:* ${myweather.data.name}\n*💮 Country:* ${myweather.data.sys.country}\n🌈 *Weather:* ${myweather.data.weather[0].description}\n🌡️ *Temperature:* ${myweather.data.main.temp}°C\n❄️ *Minimum Temperature:* ${myweather.data.main.temp_min}°C\n📛 *Maximum Temperature:* ${myweather.data.main.temp_max}°C\n💦 *Humidity:* ${myweather.data.main.humidity}%\n🎐 *Wind:* ${myweather.data.wind.speed} km/h\n`;
 
-        await Atlas.sendMessage(
+        await shadow.sendMessage(
           m.from,
           {
             video: {
@@ -187,7 +186,7 @@ module.exports = {
             gifPlayback: true,
             caption: weathertext,
           },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
@@ -196,12 +195,12 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide a sticker Search Term !\n\n*${prefix}stickersearch Cheems bonk*`
+            `Please provide a sticker Search Term !\n\n*${prefix}stickersearch Cheems bonk*`,
           );
         }
         await doReact("🧧");
         let gif = await axios.get(
-          `https://tenor.googleapis.com/v2/search?q=${text}&key=${tenorApiKey}&client_key=my_project&limit=8&media_filter=gif`
+          `https://tenor.googleapis.com/v2/search?q=${text}&key=${tenorApiKey}&client_key=my_project&limit=8&media_filter=gif`,
         );
         let resultst = Math.floor(Math.random() * 8);
         let gifUrl = gif.data.results[resultst].media_formats.gif.url;
@@ -221,7 +220,7 @@ module.exports = {
           background: "transparent",
         });
         let stickerBuffer2 = await stickerMess.toBuffer();
-        Atlas.sendMessage(m.from, { sticker: stickerBuffer2 }, { quoted: m });
+        shadow.sendMessage(m.from, { sticker: stickerBuffer2 }, { quoted: m });
         break;
 
       case "gh":
@@ -229,7 +228,7 @@ module.exports = {
         if (!text) {
           await doReact("❔");
           return m.reply(
-            `Please provide a valid *Github* username!\n\nExample: *${prefix}gh FantoX001*`
+            `Please provide a valid *Github* username!\n\nExample: *${prefix}gh FantoX001*`,
           );
         }
         await doReact("📊");
@@ -242,13 +241,13 @@ module.exports = {
         let GhUserPP = GHuserInfo.avatar_url;
         let resText4 = `        *🏮 GitHub User Info 🏮*\n\n_🎀 Username:_ *${GHuserInfo.login}*\n_🧩 Name:_ *${GHuserInfo.name}*\n\n_🧣 Bio:_ *${GHuserInfo.bio}*\n\n_🍁 Total Followers:_ *${GHuserInfo.followers}*\n_🔖 Total Public Repos:_ *${GHuserInfo.public_repos}*\n_📌 Website:_ ${GHuserInfo.blog}\n`;
 
-        Atlas.sendMessage(
+        shadow.sendMessage(
           m.from,
           {
             image: { url: GhUserPP, mimetype: "image/jpeg" },
             caption: resText4,
           },
-          { quoted: m }
+          { quoted: m },
         );
         break;
 
