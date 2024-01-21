@@ -79,34 +79,5 @@
     "youtube-yts": "^2.0.0",
     "youtubedl-core": "^4.11.5"
   },
-  "devDependencies": {
-    "jimp": "^0.16.1",
-    "link-preview-js": "^3.0.0",
-    "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.30.5"
-  },
-  "peerDependencies": {
-    "@adiwajshing/keyed-db": "^0.2.4",
-    "jimp": "^0.16.1",
-    "link-preview-js": "^3.0.0",
-    "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.30.5"
-  },
-  "peerDependenciesMeta": {
-    "@adiwajshing/keyed-db": {
-      "optional": true
-    },
-    "jimp": {
-      "optional": true
-    },
-    "link-preview-js": {
-      "optional": true
-    },
-    "qrcode-terminal": {
-      "optional": true
-    },
-    "sharp": {
-      "optional": true
-    }
-  }
+
 }
