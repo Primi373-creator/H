@@ -14,7 +14,7 @@ RUN apk --no-cache add \
 COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn install --production --frozen-lockfile --network-concurrency 1
+RUN yarn install --network-concurrency 1
 
 # Copy all files to the working directory
 COPY . .
