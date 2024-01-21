@@ -83,14 +83,14 @@
     "jimp": "^0.16.1",
     "link-preview-js": "^3.0.0",
     "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.30.5"
+    "sharp": "latest"
   },
   "peerDependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "jimp": "^0.16.1",
     "link-preview-js": "^3.0.0",
     "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.30.5"
+    "sharp": "latest"
   },
   "peerDependenciesMeta": {
     "@adiwajshing/keyed-db": {
