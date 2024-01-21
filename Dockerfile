@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 COPY package.json 
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn install --production
+RUN yarn install  --production --network-concurrency 1
 
 # Install global Node.js packages
 RUN yarn global add forever
