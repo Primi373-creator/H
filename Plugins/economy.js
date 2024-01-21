@@ -2,7 +2,7 @@ const fs = require("fs");
 const config = require("../Configurations.js");
 const eco = require("discord-mongoose-economy");
 const ty = eco.connect(config.mongodb);
-const { userData } = require("../System/MongoDB/MongoDb_Schema.js");
+const { userData } = require("../System/MongoDB/MongoDB_Schema.js");
 let mergedCommands = [
   "bank",
   "capacity",
