@@ -1,10 +1,10 @@
-FROM gcr.io/distroless/nodejs:18
+FROM node:18-alpine
 
 # Set the working directory to /usr/src/app
 WORKDIR /usr/src/app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     ffmpeg \
     imagemagick \
     wget \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn install --production --network-concurrency 1
+RUN yarn install
 
 # Install global Node.js packages
 RUN yarn global add forever
