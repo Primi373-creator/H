@@ -6,7 +6,6 @@ RUN apt-get update && \
   imagemagick \
   webp && \
   apt-get upgrade -y && \
-  npm i pm2 -g && \
   rm -rf /var/lib/apt/lists/*
 
 COPY package.json .
@@ -17,4 +16,6 @@ COPY . .
 
 EXPOSE 10000
 
-CMD ["pm2-runtime", "."]
+RUN npm install -g forever
+
+CMD ["forever", "index.js"]
