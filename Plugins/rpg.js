@@ -2,7 +2,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const eco = require("discord-mongoose-economy");
 const config = require("../Configurations.js");
-const ty = eco.connect(config.mongodb); // You can use a seperate mongodb database for RPG
+const ty = eco.connect(config.mongodb); // You can use a seperate mongodb database here for RPG
 
 const playerSchema = new mongoose.Schema({
   id: { type: String, unique: true, required: true },
