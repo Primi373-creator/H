@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     git
 
 # Copy package.json and yarn.lock to the working directory
-COPY package.json yarn.lock ./
+COPY package.json 
 
 # Install Node.js dependencies with production dependencies only
 RUN yarn install --production
