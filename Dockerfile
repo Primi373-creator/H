@@ -15,7 +15,7 @@ RUN apk --no-cache add \
 COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn install
+RUN yarn install --production
 
 
 # Copy all files to the working directory
