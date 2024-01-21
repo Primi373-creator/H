@@ -125,7 +125,6 @@ module.exports = {
         let xyz = await axios.get(
           "https://api.github.com/repos/Cipher0071/SHADOW-MD/releases",
         );
-        let latest = xyz.data[0].tag_name;
         const version2 = package.version;
         let nodeVersion = process.version;
         let os = process.platform;
