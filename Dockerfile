@@ -1,4 +1,3 @@
-# Use a minimal Node.js image from distroless
 FROM gcr.io/distroless/nodejs:18
 
 # Set the working directory to /usr/src/app
@@ -11,11 +10,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     git
 
-# Copy package.json and yarn.lock to the working directory
-COPY package.json 
+# Copy package.json to the working directory
+COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn install  --production --network-concurrency 1
+RUN yarn install --production --network-concurrency 1
 
 # Install global Node.js packages
 RUN yarn global add forever
