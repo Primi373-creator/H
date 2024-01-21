@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 RUN apk --no-cache add \
     ffmpeg \
     imagemagick \
-    wget
+    wget \
+    git
 
 # Copy package.json and yarn.lock to the working directory
 COPY package.json ./
