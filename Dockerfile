@@ -1,29 +1,19 @@
-FROM node:18-alpine
+FROM node:lts-buster
 
-# Set the working directory to /usr/src/app
-WORKDIR /usr/src/app
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  npm i pm2 -g && \
+  rm -rf /var/lib/apt/lists/*
 
-# Install system dependencies
-RUN apk add --no-cache \
-    ffmpeg \
-    imagemagick \
-    wget \
-    git
+COPY package.json .
 
-# Copy package.json to the working directory
-COPY package.json ./
+RUN yarn install
+RUN npm install -g forever
 
-# Install Node.js dependencies with production dependencies only
-RUN yarn install --force --legacy-peer-deps
-
-# Install global Node.js packages
-RUN yarn global add forever
-
-# Copy all files to the working directory
 COPY . .
 
-# Expose port 10000
-EXPOSE 10000
-
-# Use forever to start the application
 CMD ["forever", "index.js"]
