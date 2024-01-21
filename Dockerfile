@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN npm install --ignore-optional
+RUN npm install --force
 
 # Install global Node.js packages
 RUN yarn global add forever
