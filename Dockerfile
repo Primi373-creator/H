@@ -1,31 +1,30 @@
-# Use the official Node.js LTS (Alpine) image as the base image
-FROM node:lts-alpine
+# Use a minimal Node.js image from distroless
+FROM gcr.io/distroless/nodejs:18
 
 # Set the working directory to /usr/src/app
 WORKDIR /usr/src/app
 
 # Install system dependencies
-RUN apk --no-cache add \
+RUN apt-get update && apt-get install -y \
     ffmpeg \
     imagemagick \
     wget \
     git
 
 # Copy package.json and yarn.lock to the working directory
-COPY package.json ./
+COPY package.json yarn.lock ./
 
 # Install Node.js dependencies with production dependencies only
 RUN yarn install --production
 
+# Install global Node.js packages
+RUN yarn global add forever
 
 # Copy all files to the working directory
 COPY . .
 
-# Install 'forever' globally
-RUN npm install -g forever
-
 # Expose port 10000
 EXPOSE 10000
 
-# Command to start the application using 'forever'
+# Use forever to start the application
 CMD ["forever", "index.js"]
