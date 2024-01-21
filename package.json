@@ -30,7 +30,7 @@
     "@fantox01/lyrics-scraper": "^1.0.1",
     "@hapi/boom": "^10.0.1",
     "@napi-rs/canvas": "^0.1.41",
-    "@whiskeysockets/baileys": "^6.2.1",
+    "@whiskeysockets/baileys": "^6.2.2",
     "axios": "^1.2.2",
     "baileysjs": "^6.2.1",
     "canvacord": "^5.2.3",
