@@ -373,7 +373,7 @@ module.exports = {
           await doReact("❌");
           return shadow.sendMessage(
             m.from,
-            { text: `Please enter a character number between 0-19 to set !` },
+            { text: `Please enter a character number between 0-20 to set !` },
             { quoted: m },
           );
         }
@@ -391,12 +391,12 @@ module.exports = {
           await doReact("❌");
           return shadow.sendMessage(
             m.from,
-            { text: `Please enter a character number between 0-19 to set !` },
+            { text: `Please enter a character number between 0-20 to set !` },
             { quoted: m },
           );
         }
         const botNames = [
-          "shadow MD",
+          "shadow",
           "Power",
           "Makima",
           "Denji",
@@ -416,9 +416,10 @@ module.exports = {
           "Yor",
           "Shinbou",
           "Eiko",
+          "Atlas",
         ];
         const botLogos = [
-          "https://wallpapercave.com/wp/wp5924545.jpg",
+          "https://i.pinimg.com/originals/51/a5/88/51a58806748ca1ee98507c287f9f8682.jpg",
           "https://wallpapercave.com/wp/wp11253614.jpg",
           "https://images5.alphacoders.com/126/1264439.jpg",
           "https://i0.wp.com/metagalaxia.com.br/wp-content/uploads/2022/11/Chainsaw-Man-Denji-e-Power.webp?resize=1068%2C601&ssl=1",
@@ -438,6 +439,7 @@ module.exports = {
           "https://images7.alphacoders.com/123/1236729.jpg",
           "https://wallpapercave.com/wp/wp4650481.jpg",
           "https://images8.alphacoders.com/122/1229829.jpg",
+          "https://wallpapercave.com/wp/wp5924545.jpg",
         ];
 
         checkChar = await getChar();
