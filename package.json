@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/Cipher0071/SHADOW-MD/issues"
   },
-  "homepage": "https://github.com/Cipher0071/SHADOW-MD#readme",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@fantox01/lyrics-scraper": "^1.0.1",
@@ -32,7 +31,6 @@
     "@napi-rs/canvas": "^0.1.41",
     "@whiskeysockets/baileys": "^6.2.1",
     "axios": "^1.2.2",
-    "baileysjs": "^6.2.1",
     "canvacord": "^5.2.3",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
