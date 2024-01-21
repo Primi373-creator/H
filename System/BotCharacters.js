@@ -1,12 +1,12 @@
 global.charID0 = {
-    botName : "Atlas",
-    botVideo : "https://graph.org/file/e3b2ee218b98b8679bf98.mp4",
-    botImage1 : "https://i.imgur.com/MClOeqe.jpeg",
-    botImage2 : "https://i.imgur.com/MClOeqe.jpeg",
-    botImage3 : "https://i.imgur.com/MClOeqe.jpeg",
-    botImage4 : "https://i.imgur.com/MClOeqe.jpeg",
-    botImage5 : "https://i.imgur.com/MClOeqe.jpeg",
-    botImage6 : "https://i.imgur.com/MClOeqe.jpeg",
+    botName : "Shadow",
+    botVideo : "./Assets/shadow.mp4",
+    botImage1 : "https://i.pinimg.com/originals/51/a5/88/51a58806748ca1ee98507c287f9f8682.jpg",
+    botImage2 : "https://i.pinimg.com/originals/73/a4/25/73a425df6ca299f1cb907376f19d6cab.png",
+    botImage3 : "https://i.pinimg.com/originals/1e/80/4f/1e804f01335ad6782e52bd75cc367634.jpg",
+    botImage4 : "https://i.pinimg.com/originals/05/0b/5a/050b5ad64825e4953d5580f235f68a67.jpg",
+    botImage5 : "https://i.pinimg.com/originals/24/9d/86/249d8644ed61ca978c1411ea75f72042.jpg",
+    botImage6 : "https://i.pinimg.com/originals/96/4f/a8/964fa8034a1eaa3d8c4063ebbf3b67ca.jpg",
 }
 
 global.charID1 = {
@@ -222,4 +222,15 @@ global.charID19 = {
   botImage4 : "https://images6.alphacoders.com/126/1260043.png",
   botImage5 : "https://images6.alphacoders.com/124/1247977.jpg",
   botImage6 : "https://images2.alphacoders.com/125/1251795.jpg",
+}
+
+global.charID20 = {
+    botName : "Atlas",
+    botVideo : "https://graph.org/file/e3b2ee218b98b8679bf98.mp4",
+    botImage1 : "https://i.imgur.com/MClOeqe.jpeg",
+    botImage2 : "https://i.imgur.com/MClOeqe.jpeg",
+    botImage3 : "https://i.imgur.com/MClOeqe.jpeg",
+    botImage4 : "https://i.imgur.com/MClOeqe.jpeg",
+    botImage5 : "https://i.imgur.com/MClOeqe.jpeg",
+    botImage6 : "https://i.imgur.com/MClOeqe.jpeg",
 }
