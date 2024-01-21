@@ -1,19 +1,23 @@
-FROM node:lts-buster
+# Build Stage
+FROM node:lts-buster as builder
 
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  npm i pm2 -g && \
-  rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
 COPY package.json .
-
 RUN yarn install
-RUN npm install -g forever
 
+# Runtime Stage
+FROM node:lts-alpine
+
+WORKDIR /app
+
+RUN apk --no-cache add \
+    ffmpeg \
+    imagemagick \
+    webp \
+    && npm i forever -g
+
+COPY --from=builder /app/node_modules /app/node_modules
 COPY . .
 
 CMD ["forever", "index.js"]
