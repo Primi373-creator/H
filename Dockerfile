@@ -15,8 +15,6 @@ RUN apk --no-cache add \
 COPY package.json ./
 
 # Install Node.js dependencies with production dependencies only
-RUN yarn cache clean
-
 RUN yarn install
 
 
