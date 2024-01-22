@@ -2,7 +2,7 @@
 
 
 <p align="left">
-  <a href="https://github.com/Cipheroo71"><img title="Support" src="https://img.shields.io/badge/maintained-yes-cyan.svg?style=for-the-badge&logo=xcode" /></a>
+  <a href="https://github.com/Cipher0071"><img title="Support" src="https://img.shields.io/badge/maintained-yes-cyan.svg?style=for-the-badge&logo=xcode" /></a>
 </p>
 
 
@@ -16,7 +16,7 @@
 </p>
 <br>
 <p align="left">
-  <a href="https://github.com/Cipher0071"><img title="Support" src="https://img.shields.io/badge/next%20update-undefined!-green.svg?style=for-the-badge&logo=xcode" /></a>
+  <a href="https://github.com/Cipher0071"><img title="Support" src="https://img.shields.io/badge/next%20update-soonest!-green.svg?style=for-the-badge&logo=xcode" /></a>
 </p>
  
   
