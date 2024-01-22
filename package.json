@@ -1,7 +1,7 @@
 {
   "name": "shadow",
   "version": "0.0.1",
-  "description": "The future of WhatsApp bots with plugin support.",
+  "description": "The future of WhatsApp bots now with plugin support.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
