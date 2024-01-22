@@ -8,7 +8,7 @@ if (!gg) {
 
 global.owner = gg.split("2349049640547,2349150690169");
 global.mongodb = process.env.MONGODB || "mongodb+srv://pobasuyi69:9UW3Yra6HZFUCT0B@cluster0.lum7yrw.mongodb.net/?retryWrites=true&w=majority";
-global.sessionId = process.env.SESSION_ID || "567HGKJHSFLJFG";
+global.sessionId = process.env.SESSION_ID || "567HGKJHSFLJFG{remove}";
 global.prefa = process.env.PREFIX || "#";
 global.tenorApiKey = process.env.TENOR_API_KEY || "AIzaSyCyouca1_KKy4W_MG1xsPzuku5oa8W358c";
 global.packname = process.env.PACKNAME || `SHADOW-MD`;
