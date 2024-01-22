@@ -125,5 +125,12 @@ Konnichiwa Senpai, I am "Shadow" an Opensource WhatsApp bot made by <a href="htt
 <h2 align="center">🔰 SPECIAL THANKS TO 🔰
 </h2>
 
+
+[![Fantox](https://github.com/FantoX.png)](https://github.com/FantoX)  | [![Cipher0071](https://github.com/Cipher0071.png)](https://github.com/Cipher0071) | [![Primi373](https://github.com/Primi373-creator.png)](https://github.com/Primi373-creator)
+----|----|----
+[FantoX](https://github.com/FantoX)  | [Cipher0071](https://github.com/Cipher0071) | [Primi373](https://github.com/Primi373-creator)
+Base owner  | ideas, testing, Debugger | owner, main developer, debuggger
+
  
 <h6 align="center">BOT NOT STABLE YET DO NOT DEPLOY [IF YOU DO YOU DEPLOY AT YOUR OWN RISK] </h6>
+<h6 align="center">ALSO OTHER PLATFORMS HAVE NOT BEEN TESTED FEEL FREE TO TEST THEM OUT YOURSELF</h6>
