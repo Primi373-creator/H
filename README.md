@@ -42,7 +42,7 @@ Konnichiwa Senpai, I am "Shadow" an Opensource WhatsApp bot made by <a href="htt
     <img src="https://img.shields.io/github/stars/Cipher0071/SHADOW-MD?style=social">
   </a>
 <p align="center">
-<a href="[https://github.com/FantoX/Atlas-MD](https://github.com/Cipher0071/SHADOW-MD)"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FCipher0071%2FSHADOW-MD&count_bg=%23FFA305&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=People+Visited&edge_flat=false)](https://hits.seeyoufarm.com" width="150px" /></a>
+<a href="[https://github.com/Cipher0071/SHADOW-MD](https://github.com/Cipher0071/SHADOW-MD)"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FCipher0071%2FSHADOW-MD&count_bg=%23FFA305&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=People+Visited&edge_flat=false)](https://hits.seeyoufarm.com" width="150px" /></a>
 </p>
   
    
@@ -95,7 +95,7 @@ Konnichiwa Senpai, I am "Shadow" an Opensource WhatsApp bot made by <a href="htt
 
 # 🧣 Contributors:
 
-- Check [Shadow Contributors](https://github.com/FantoX/Atlas-MD/graphs/contributors) list.
+- Check [Shadow Contributors](https://github.com/Cipher0071/SHADOW-MD/graphs/contributors) list.
 - Feel free to contribute in this project it increase it's stability and update. I will merge your respected contribution after reviewing it.
 - No personal modification / re-branding ( Changing bot name, owner name ) pull requests will be merged !
     
