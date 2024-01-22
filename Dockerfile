@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 10000
 
-CMD ["pm2-runtime", "."]
+CMD ["pm2 start index.js && pm2 save && pm2 logs"]
