@@ -1,3 +1,4 @@
+#For back4app deployment only never tested in any platform
 FROM node:lts-buster
 
 RUN apt-get update && \
