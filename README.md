@@ -1,5 +1,33 @@
-<h4 align="center">SHADOW-MD 1.0</h4>
+<h4 align="center">SHADOW-MD </h4>
+
+
+<p align="left">
+  <a href="https://github.com/Cipheroo71"><img title="Support" src="https://img.shields.io/badge/maintained-yes-cyan.svg?style=for-the-badge&logo=xcode" /></a>
+</p>
+
+
+
+
+
+
+<br>
+<p align="left">
+  <a href="https://github.com/Cipher0071"><img title="Support" src="https://img.shields.io/badge/current%20Status-running%20with%20bugs!-orange.svg?style=for-the-badge&logo=xcode" /></a>
+</p>
+<br>
+<p align="left">
+  <a href="https://github.com/Cipher0071"><img title="Support" src="https://img.shields.io/badge/next%20update-undefined!-green.svg?style=for-the-badge&logo=xcode" /></a>
+</p>
  
+  
+   
+   
+   
+   
+   
+   
+   
+   
    1. Fork the repo
     <br>
 <a href='https://github.com/Cipher0071/SHADOW-MD/fork' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/Fork Repo-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=black&color=black'/></a>
