@@ -1,16 +1,17 @@
-FROM node:lts-alpine
+FROM node:lts-buster
 
-# Install system dependencies
-RUN apk --no-cache add ffmpeg imagemagick webp
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  npm i pm2 -g && \
+  rm -rf /var/lib/apt/lists/*
 
-# Set the working directory
-WORKDIR /app
+COPY package.json .
+RUN npm install -g pm2
 
-RUN   npm i forever -g
-
-# Copy the application code and pre-installed node_modules.
 COPY . .
-
 EXPOSE 10000
-# Define the command to run your app
-CMD ["forever", "index.js"]
+CMD ["pm2 start index.js && pm2 save && pm2 logs"]
