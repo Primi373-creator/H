@@ -10,8 +10,10 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 COPY package.json .
-RUN npm install -g pm2
+
 
 COPY . .
+
 EXPOSE 10000
-CMD ["pm2 start index.js && pm2 save && pm2 logs"]
+
+CMD ["pm2-runtime", "."]
