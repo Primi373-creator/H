@@ -10,7 +10,6 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 COPY package.json .
-RUN npm install -g pm2
 
 COPY . .
 EXPOSE 10000
